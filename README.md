@@ -1,7 +1,10 @@
-# SELENE · El Arco de la Luna Eterna
+# SELENE · Fumigación y Limpieza Profesional
 
-Experiencia web inmersiva en WebGL inspirada en la ilustración del arco lunar del repositorio.
-Todo se genera en el navegador: **sin modelos importados, sin texturas, sin audio pregrabado**.
+Sitio web inmersivo en WebGL para un servicio de **fumigación, control de plagas y limpieza**: cucarachas, roedores, termitas, mosquitos, hormigas, chinches, alacranes, murciélagos, desinfección, limpieza profunda, tapicería, cisternas, post-obra y planes para empresas. Incluye formulario de cotización y un mini-juego de puntería.
+
+Todo el 3D se genera en el navegador: **sin modelos importados, sin texturas, sin audio pregrabado**.
+
+**Configura tu contacto:** en `dev.html`, en el formulario `#quote-form`, rellena `data-whatsapp="521234567890"` (con código de país) o `data-email="tu@correo.com"` y ejecuta `npm run build`.
 
 ## Cómo verla
 

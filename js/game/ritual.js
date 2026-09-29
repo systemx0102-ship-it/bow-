@@ -74,7 +74,7 @@ export class Ritual {
     this.level = i;
     const c = this.constellations[i];
     c.activate();
-    this.banner(`<small>Constelación ${['I', 'II', 'III'][i]}</small>${c.def.name}<em>${c.def.title}</em>`);
+    this.banner(`<small>Nivel ${['I', 'II', 'III'][i]}</small>${c.def.name}<em>${c.def.title}</em>`);
     this.renderDots();
     this.hud.level.textContent = c.def.name;
   }
@@ -321,7 +321,7 @@ export class Ritual {
     center.divideScalar(c.stars.length);
     this.particles.burst(center, 520, { speed: 28, color: new THREE.Color(1.1, 0.95, 0.7), life: 2.4, size: 0.8, grav: 0.15, drag: 1.1, spread: 4 });
     this.shockAt(center, 1.6);
-    this.banner(`<small>+1000 · Constelación restaurada</small>${c.def.name}<em>brilla de nuevo</em>`);
+    this.banner(`<small>+1000 · Plaga eliminada</small>${c.def.name}<em>zona libre de plagas</em>`);
     this.locked = true;
     setTimeout(() => {
       this.locked = false;
@@ -333,7 +333,7 @@ export class Ritual {
 
   victory() {
     const acc = this.shots ? this.hits / this.shots : 0;
-    const rank = acc >= 0.85 ? ['S', 'Guardián de Selene'] : acc >= 0.65 ? ['A', 'Arquero Estelar'] : acc >= 0.45 ? ['B', 'Cazador de Cometas'] : ['C', 'Aprendiz de la Luna'];
+    const rank = acc >= 0.85 ? ['S', 'Exterminador de Élite'] : acc >= 0.65 ? ['A', 'Técnico Certificado'] : acc >= 0.45 ? ['B', 'Fumigador en Formación'] : ['C', 'Aprendiz de Fumigador'];
     $('v-rank').textContent = rank[0];
     $('v-title').textContent = rank[1];
     $('v-score').textContent = this.score.toLocaleString('es');
@@ -407,7 +407,7 @@ export class Ritual {
     this.hud.windArrow.style.opacity = Math.abs(w) < 0.05 ? 0.25 : 1;
     this.hud.energy.style.setProperty('--e', this.energy);
     this.hud.energy.classList.toggle('full', this.energy >= 1);
-    this.hud.energyLabel.textContent = this.energy >= 1 ? (this.charge >= 1 ? 'Nova cargada · suelta' : 'Nova lista · mantén la tensión') : 'Energía lunar';
+    this.hud.energyLabel.textContent = this.energy >= 1 ? (this.charge >= 1 ? 'Nova cargada · suelta' : 'Nova lista · mantén la tensión') : 'Energía de precisión';
     const r = this.hud.reticle;
     r.style.setProperty('--d', this.draw);
     r.style.setProperty('--c', this.charge);

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>SELENE · El Arco de la Luna Eterna</title>
-  <meta name="description" content="Una reliquia celeste en WebGL: un arco forjado con luz lunar, un hilo que canta y un ritual para volver a encender las constelaciones." />
+  <title>SELENE · Fumigación y Limpieza Profesional</title>
+  <meta name="description" content="Fumigación, control de plagas y limpieza profesional: cucarachas, roedores, termitas, mosquitos, desinfección, limpieza profunda y más. Inspección gratuita." />
   <meta name="theme-color" content="#02040d" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='40' cy='22' r='14' fill='%239cc8ff'/%3E%3Cpath d='M20 4 Q44 32 20 60' stroke='%237fe0ff' stroke-width='5' fill='none'/%3E%3Cpath d='M20 4 L20 60' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +40,7 @@
         <path d="M160 100 l-12 -6 v12 z" fill="url(#lg)"/>
       </svg>
     </div>
-    <p class="loader-eyebrow">Reliquia Celeste · Nº 0001</p>
+    <p class="loader-eyebrow">Fumigación · Control de plagas · Limpieza</p>
     <h2 class="loader-title">SELENE</h2>
     <div class="loader-track"><div id="loader-bar"></div></div>
     <div class="loader-meta"><span id="loader-msg">Invocando…</span><span id="loader-pct">000</span></div>
@@ -48,7 +48,7 @@
       <button id="enter-sound" class="btn primary magnetic"><span>Entrar con sonido</span></button>
       <button id="enter-silent" class="btn ghost"><span>Entrar en silencio</span></button>
     </div>
-    <p class="loader-note">Recomendado: auriculares · pantalla completa</p>
+    <p class="loader-note">Experiencia 3D interactiva · recomendado con sonido</p>
   </div>
 
   <!-- ============ NAV ============ -->
@@ -57,12 +57,12 @@
       <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="25" cy="14" r="8" /><path d="M13 3 Q30 20 13 37" /><path d="M13 3 L13 37" class="s" /></svg>
       <span>SELENE</span>
     </a>
-    <nav aria-label="Capítulos">
-      <a href="#origen" data-scramble>Origen</a>
-      <a href="#forja" data-scramble>La Forja</a>
-      <a href="#hilo" data-scramble>El Hilo</a>
-      <a href="#cielo" data-scramble>El Cielo</a>
-      <a href="#ritual" data-scramble>El Ritual</a>
+    <nav aria-label="Secciones">
+      <a href="#nosotros" data-scramble>Nosotros</a>
+      <a href="#fumigacion" data-scramble>Fumigación</a>
+      <a href="#limpieza" data-scramble>Limpieza</a>
+      <a href="#proceso" data-scramble>Proceso</a>
+      <a href="#contacto" data-scramble>Contacto</a>
     </nav>
     <button id="sound-toggle" class="sound" aria-pressed="false" aria-label="Activar o silenciar sonido">
       <i></i><i></i><i></i><i></i><span>Silencio</span>
@@ -73,97 +73,140 @@
 
   <!-- ============ CONTENT ============ -->
   <main id="content">
-    <section id="hero" class="chapter hero" data-num="0" data-title="Selene">
+    <section id="hero" class="chapter hero" data-num="0" data-title="Inicio">
       <div class="hero-inner">
-        <p class="eyebrow" data-reveal><span class="dot"></span> Reliquia Celeste · Era Lunar · Nº 0001</p>
+        <p class="eyebrow" data-reveal><span class="dot"></span> Fumigación · Control de plagas · Limpieza profesional</p>
         <h1 class="hero-title split">SELENE</h1>
-        <p class="hero-sub" data-reveal>El arco forjado con la última luz de una luna que ya no existe.</p>
+        <p class="hero-sub" data-reveal>Precisión de arquero contra las plagas. Fumigamos, desinfectamos y limpiamos tu hogar o negocio para que vuelva a ser tuyo.</p>
         <div class="hero-cta" data-reveal>
-          <button class="btn primary magnetic" data-ritual><span>Iniciar el Ritual</span><svg viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></svg></button>
-          <a class="btn ghost" href="#origen"><span>Descubrir la leyenda</span></a>
+          <a class="btn primary magnetic" href="#contacto"><span>Cotizar gratis</span><svg viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></svg></a>
+          <a class="btn ghost" href="#fumigacion"><span>Ver servicios</span></a>
         </div>
       </div>
       <div class="scroll-cue" aria-hidden="true"><span>Desliza</span><i></i></div>
       <div class="hero-coords" aria-hidden="true">
-        <span>RA 05h 35m 17s</span><span>DEC −05° 23′ 28″</span><span>MAG −12.7</span>
+        <span>Hogares</span><span>Comercios</span><span>Industrias</span><span>Atención 24/7</span>
       </div>
     </section>
 
-    <section id="origen" class="chapter right" data-num="I" data-title="Origen">
+    <section id="nosotros" class="chapter right" data-num="I" data-title="Nosotros">
       <div class="panel" data-reveal>
         <p class="num">I</p>
-        <h2>Cuando la primera luna murió, <em>su luz no se apagó.</em><br/>Se endureció.</h2>
-        <p>Durante mil doscientos años los últimos astrónomos de Selenia recogieron los fragmentos que caían del cielo. Eran fríos, azules y cantaban cuando el viento los rozaba. Con ellos no construyeron un templo, ni una corona, ni una espada.</p>
-        <p>Construyeron un arco. Porque solo un arco puede devolver algo al cielo.</p>
-        <blockquote>«Quien tense a Selene no dispara flechas: dispara estrellas de regreso a casa.»<cite>— Inscripción del empuñe</cite></blockquote>
+        <h2>Cada plaga tiene un punto débil. <em>Nosotros apuntamos ahí.</em></h2>
+        <p>En SELENE no rociamos a ciegas. Primero inspeccionamos, identificamos la especie, encontramos el foco y después aplicamos el tratamiento exacto, en la dosis exacta, en el lugar exacto. Como una flecha.</p>
+        <p>Trabajamos con técnicos capacitados, productos registrados y métodos de bajo impacto, seguros para niños y mascotas cuando se siguen nuestras indicaciones.</p>
+        <ul class="checks">
+          <li>Inspección y diagnóstico sin costo</li>
+          <li>Productos de baja toxicidad y sin olor residual</li>
+          <li>Certificado de servicio para tu negocio</li>
+          <li>Garantía y visitas de seguimiento</li>
+        </ul>
       </div>
     </section>
 
-    <section id="forja" class="chapter left" data-num="II" data-title="La Forja">
-      <div class="panel" data-reveal>
+    <section id="fumigacion" class="chapter left" data-num="II" data-title="Fumigación">
+      <div class="panel wide-l" data-reveal>
         <p class="num">II</p>
-        <h2>Acero de meteorito, <em>venas de marea.</em></h2>
-        <p>Las palas están templadas en el frío absoluto del vacío. Bajo su superficie corren venas de cristal que laten con el pulso de la marea: cuanto más se tensa el arco, más brillan.</p>
-        <div class="stats">
-          <div class="stat tilt"><b data-count="7">0</b><span>Cristales de marea</span></div>
-          <div class="stat tilt"><b data-count="1200">0</b><span>Años de forja</span></div>
-          <div class="stat tilt"><b data-count="88">0</b><span>Kg de tensión</span></div>
-          <div class="stat tilt"><b>∞</b><span>Estrellas atadas</span></div>
+        <h2>Fumigación y control <em>de plagas.</em></h2>
+        <p>Tratamientos específicos para cada tipo de plaga, en interiores y exteriores.</p>
+        <div class="services">
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="26" rx="8" ry="12"/><path d="M24 14v-4M20 11l-4-5M28 11l4-5M16 22l-8-3M16 28l-8 2M16 34l-6 5M32 22l8-3M32 28l8 2M32 34l6 5"/></svg><h3>Cucarachas</h3><p>Gel cebo y aspersión dirigida en cocinas, baños y ductos.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M8 34c4-12 14-18 26-16 6 1 8 6 6 10-2 5-8 7-14 7H14"/><circle cx="36" cy="22" r="1.6"/><path d="M40 20l4-3M14 35c-4 0-8 2-10 6"/></svg><h3>Roedores</h3><p>Desratización con estaciones seguras y sellado de accesos.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M10 40h28M14 40V18M24 40V12M34 40V20"/><path d="M14 24l-4-2M24 18l4-2M34 28l4-2M24 28l-4-2"/></svg><h3>Termitas</h3><p>Barreras químicas y tratamiento de madera y estructuras.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M24 14l2 16-2 4-2-4z"/><path d="M22 20l-12-8M26 20l12-8M22 26l-10 6M26 26l10 6M24 14v-6"/></svg><h3>Mosquitos y zancudos</h3><p>Nebulización y control de criaderos contra dengue y zika.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><circle cx="16" cy="26" r="4"/><circle cx="25" cy="26" r="4"/><circle cx="35" cy="24" r="5"/><path d="M13 30l-4 6M20 30l-2 7M26 30l2 7M33 29l3 6M38 20l4-5M36 19l1-6"/></svg><h3>Hormigas</h3><p>Eliminación de colonias completas, no solo de las que ves.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="26" rx="10" ry="8"/><path d="M14 24l-6-4M14 28l-6 4M34 24l6-4M34 28l6 4M18 20l-4-6M30 20l4-6"/></svg><h3>Chinches, pulgas y garrapatas</h3><p>Tratamiento de colchones, alfombras, mascotas y patios.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M24 12c-6 0-8 6-8 12s4 10 8 10 8-4 8-10-2-12-8-12z"/><path d="M24 34c0 4 3 6 6 5M16 20l-6-4M32 20l6-4M16 28l-7 2M32 28l7 2"/></svg><h3>Alacranes y arañas</h3><p>Control perimetral y revisión de grietas y jardines.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M24 22c-4-6-12-8-18-4 4 2 6 6 6 10 4-2 8-2 12 0 4-2 8-2 12 0 0-4 2-8 6-10-6-4-14-2-18 4z"/></svg><h3>Murciélagos y aves</h3><p>Exclusión sin daño y sanitización de guano y nidos.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="hilo" class="chapter right" data-num="III" data-title="El Hilo">
-      <div class="panel" data-reveal>
+    <section id="limpieza" class="chapter right" data-num="III" data-title="Limpieza">
+      <div class="panel wide-r" data-reveal>
         <p class="num">III</p>
-        <h2>Un único filamento <em>de luz lunar.</em></h2>
-        <p>La cuerda no es de tripa ni de seda: es un rayo de luna trenzado sobre sí mismo treinta y tres veces. Está viva, se simula en tiempo real y todavía recuerda cómo sonar.</p>
-        <p class="hint"><span class="pulse"></span><span>Cruza la cuerda con el cursor o el dedo: <strong>tócala como un arpa.</strong></span></p>
+        <h2>Limpieza y desinfección <em>profesional.</em></h2>
+        <p>Después de la plaga, dejamos el espacio impecable. También limpiamos aunque no haya plaga.</p>
+        <div class="services two">
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M16 10h10v8l6 4v18H14V22l2-2z"/><path d="M26 12h8M30 12v-4M20 28h8"/></svg><h3>Desinfección y sanitización</h3><p>Nebulización contra virus, bacterias y hongos.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M8 38h32M12 38V20h24v18M18 20v-6h12v6"/><path d="M22 28h4"/></svg><h3>Limpieza profunda</h3><p>Hogares, oficinas y locales de piso a techo.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M8 30h32v6H8zM12 30v-8a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v8M10 36v4M38 36v4"/></svg><h3>Tapicería y alfombras</h3><p>Lavado por inyección-extracción de salas, colchones y alfombras.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M14 12h20v28H14z"/><path d="M14 20h20M14 28h20"/><path d="M24 6v6"/></svg><h3>Cisternas y tinacos</h3><p>Lavado y desinfección de tanques de agua.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M10 40l12-24 4 6 4-4 8 22z"/><path d="M30 14l4-6 4 6"/></svg><h3>Limpieza post-obra</h3><p>Retiro de polvo, cemento y pintura tras remodelaciones.</p></article>
+          <article class="svc tilt"><svg viewBox="0 0 48 48"><path d="M6 40h36M10 40V16l14-8 14 8v24"/><path d="M18 40V28h12v12M16 20h4M28 20h4"/></svg><h3>Empresas e industrias</h3><p>Planes mensuales con bitácora y certificados.</p></article>
+        </div>
+        <p class="hint"><span class="pulse"></span><span>Detalle oculto: pasa el cursor sobre la cuerda del arco, <strong>suena como un arpa.</strong></span></p>
       </div>
     </section>
 
-    <section id="cielo" class="chapter center" data-num="IV" data-title="El Cielo">
+    <section id="proceso" class="chapter center" data-num="IV" data-title="Proceso">
       <div class="panel wide" data-reveal>
         <p class="num">IV</p>
-        <h2>Tres constelaciones <em>se apagaron.</em></h2>
-        <p>La noche en que murió la luna, el cielo perdió a su Cazador, a su Reina y a su Lira. Solo Selene puede volver a encenderlas, estrella a estrella.</p>
+        <h2>Así trabajamos, <em>paso a paso.</em></h2>
         <div class="cards">
-          <article class="card tilt">
-            <svg viewBox="0 0 100 100" aria-hidden="true"><g class="lines"><path d="M22 18 L78 22 M22 18 L40 55 M78 22 L60 50 L50 52 L40 55 M40 55 L27 90 M60 50 L82 86"/></g><g class="st"><circle cx="22" cy="18" r="3"/><circle cx="78" cy="22" r="3"/><circle cx="60" cy="50" r="2.4"/><circle cx="50" cy="52" r="2.4"/><circle cx="40" cy="55" r="2.4"/><circle cx="27" cy="90" r="3"/><circle cx="82" cy="86" r="3"/></g></svg>
-            <h3>Orión</h3><p>El Cazador · 7 estrellas</p><span class="tag">Sin viento</span>
-          </article>
-          <article class="card tilt">
-            <svg viewBox="0 0 100 100" aria-hidden="true"><g class="lines"><path d="M10 38 L30 68 L50 45 L70 72 L90 36"/></g><g class="st"><circle cx="10" cy="38" r="3"/><circle cx="30" cy="68" r="3"/><circle cx="50" cy="45" r="3"/><circle cx="70" cy="72" r="3"/><circle cx="90" cy="36" r="3"/></g></svg>
-            <h3>Casiopea</h3><p>La Reina · 5 estrellas</p><span class="tag">Viento solar · estrellas errantes</span>
-          </article>
-          <article class="card tilt">
-            <svg viewBox="0 0 100 100" aria-hidden="true"><g class="lines"><path d="M50 10 L36 45 L64 40 Z M64 40 L70 88 L40 90 L36 45"/></g><g class="st"><circle cx="50" cy="10" r="4"/><circle cx="36" cy="45" r="2.6"/><circle cx="64" cy="40" r="2.6"/><circle cx="70" cy="88" r="2.6"/><circle cx="40" cy="90" r="2.6"/></g></svg>
-            <h3>Lyra</h3><p>La Lira de Orfeo · 5 estrellas</p><span class="tag">Tormenta · cometas</span>
-          </article>
+          <article class="card tilt"><div class="step">01</div><h3>Inspección</h3><p>Visitamos tu espacio, identificamos la plaga, el foco y el nivel de infestación. Sin costo.</p><span class="tag">Diagnóstico gratis</span></article>
+          <article class="card tilt"><div class="step">02</div><h3>Tratamiento</h3><p>Aplicamos el método y el producto indicados, en el horario que menos te afecte.</p><span class="tag">A tu medida</span></article>
+          <article class="card tilt"><div class="step">03</div><h3>Garantía</h3><p>Te damos recomendaciones, certificado y visitas de seguimiento si la plaga regresa.</p><span class="tag">Seguimiento incluido</span></article>
         </div>
+        <div class="stats four">
+          <div class="stat tilt"><b data-count="24">0</b><span>Horas · atención de emergencias</span></div>
+          <div class="stat tilt"><b data-count="3">0</b><span>Pasos · inspección a garantía</span></div>
+          <div class="stat tilt"><b data-count="14">0</b><span>Servicios de fumigación y limpieza</span></div>
+          <div class="stat tilt"><b>$0</b><span>Costo de la inspección</span></div>
+        </div>
+        <ul class="chips">
+          <li>Casas</li><li>Departamentos</li><li>Restaurantes</li><li>Hoteles</li><li>Oficinas</li><li>Escuelas</li><li>Clínicas</li><li>Bodegas</li><li>Industrias</li>
+        </ul>
       </div>
     </section>
 
-    <section id="ritual" class="chapter center ritual" data-num="V" data-title="El Ritual">
+    <section id="ritual" class="chapter center ritual" data-num="V" data-title="Desafío">
       <div class="panel wide" data-reveal>
         <p class="num">V</p>
-        <h2 class="big">Tensa el arco.<br/><em>Devuelve las estrellas.</em></h2>
+        <h2 class="big">¿Tienes buena puntería?<br/><em>Elimina las plagas.</em></h2>
         <ol class="rules">
-          <li><b>Mantén pulsado</b> para tensar. Cuanto más tensas, más lejos y más recto vuela.</li>
-          <li><b>Suelta</b> para disparar. Soltar justo al llegar al máximo es un tiro <em>Perfecto</em> (×2).</li>
-          <li>La gravedad curva la flecha y el <b>viento solar</b> la desvía. La guía de trayectoria se acorta en cada constelación.</li>
-          <li>Cada impacto carga la <b>energía lunar</b>. Llena y mantén la tensión: dispararás una <em>Nova</em> que arrasa todo a su paso (×3).</li>
+          <li><b>Mantén pulsado</b> para tensar el arco y <b>suelta</b> para disparar. Soltar justo al máximo es un tiro <em>Perfecto</em> (×2).</li>
+          <li>Tres niveles: <b>cucarachas</b>, <b>termitas</b> y <b>roedores</b>. La gravedad curva la flecha y el viento la desvía.</li>
+          <li>Cada acierto carga tu energía. Llénala y mantén la tensión para lanzar una <em>Nova</em> que arrasa todo a su alrededor (×3).</li>
           <li>No aguantes demasiado: el brazo se cansa y la puntería tiembla.</li>
         </ol>
-        <button class="btn primary xl magnetic" data-ritual><span>Comenzar el Ritual</span><svg viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></svg></button>
+        <button class="btn primary xl magnetic" data-ritual><span>Comenzar el desafío</span><svg viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></svg></button>
         <p class="small">Ratón, táctil o <kbd>Espacio</kbd> para tensar · <kbd>Esc</kbd> para salir</p>
+      </div>
+    </section>
+
+    <section id="contacto" class="chapter right" data-num="VI" data-title="Contacto">
+      <div class="panel" data-reveal>
+        <p class="num">VI</p>
+        <h2>Solicita tu <em>inspección gratuita.</em></h2>
+        <p>Cuéntanos qué necesitas y te respondemos con una cotización sin compromiso.</p>
+        <!-- Configura aquí tu número de WhatsApp (con código de país) o tu correo -->
+        <form id="quote-form" class="quote" data-whatsapp="" data-email="">
+          <label><span>Nombre</span><input name="nombre" required autocomplete="name" /></label>
+          <label><span>Teléfono</span><input name="telefono" type="tel" required autocomplete="tel" /></label>
+          <label><span>Servicio</span>
+            <select name="servicio">
+              <option>Fumigación de cucarachas</option><option>Control de roedores</option><option>Tratamiento de termitas</option>
+              <option>Mosquitos y zancudos</option><option>Hormigas</option><option>Chinches, pulgas y garrapatas</option>
+              <option>Alacranes y arañas</option><option>Murciélagos y aves</option><option>Desinfección y sanitización</option>
+              <option>Limpieza profunda</option><option>Tapicería y alfombras</option><option>Cisternas y tinacos</option>
+              <option>Limpieza post-obra</option><option>Plan para empresas</option>
+            </select>
+          </label>
+          <label><span>Tipo de lugar</span>
+            <select name="lugar"><option>Casa</option><option>Departamento</option><option>Negocio / local</option><option>Oficina</option><option>Industria / bodega</option></select>
+          </label>
+          <label class="full"><span>Detalles (opcional)</span><textarea name="mensaje" rows="3"></textarea></label>
+          <button class="btn primary magnetic full" type="submit"><span>Enviar solicitud</span><svg viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></svg></button>
+          <p id="form-note" class="small full" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
     <footer class="footer">
       <p class="sig">SELENE</p>
-      <p>Forjado en código: Three.js · WebGL · GLSL · Web Audio. Sin imágenes, sin modelos importados, sin audio pregrabado — todo se genera en tu navegador.</p>
-      <p class="small">Geometría procedural · Cuerda con física Verlet · Partículas GPU analíticas · Karplus-Strong · Síntesis FM</p>
+      <p>Fumigación, control de plagas y limpieza profesional para hogares, comercios e industrias.</p>
+      <p class="small">Cucarachas · Roedores · Termitas · Mosquitos · Hormigas · Chinches · Alacranes · Desinfección · Limpieza profunda · Tapicería · Cisternas · Post-obra</p>
     </footer>
   </main>
 
@@ -175,9 +218,9 @@
       <div class="hud-box combo"><small>Combo</small><b id="hud-combo">×1</b></div>
       <div class="hud-center"><small id="hud-level">Orión</small><div id="hud-dots"></div></div>
       <div class="hud-box wind"><small>Viento solar</small><b><span id="hud-wind-arrow">➔</span> <span id="hud-wind">0.0</span></b></div>
-      <button id="hud-exit" class="hud-exit" aria-label="Salir del ritual">Salir <kbd>Esc</kbd></button>
+      <button id="hud-exit" class="hud-exit" aria-label="Salir del desafío">Salir <kbd>Esc</kbd></button>
     </div>
-    <div id="hud-energy" class="energy"><div class="fill"></div><small id="hud-energy-label">Energía lunar</small></div>
+    <div id="hud-energy" class="energy"><div class="fill"></div><small id="hud-energy-label">Energía de precisión</small></div>
     <div id="hud-banner" class="banner"></div>
     <p class="hud-hint">Mantén para tensar · Suelta para disparar</p>
     <div id="reticle"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" class="base"/><circle cx="50" cy="50" r="30" class="draw"/><circle cx="50" cy="50" r="40" class="charge"/><path d="M50 8v12M50 80v12M8 50h12M80 50h12"/><circle cx="50" cy="50" r="1.8" class="dot"/></svg></div>
@@ -185,7 +228,7 @@
   <div id="popups" aria-hidden="true"></div>
   <div id="victory" role="dialog" aria-label="Resultado">
     <div class="v-card">
-      <p class="eyebrow">El cielo ha sido restaurado</p>
+      <p class="eyebrow">Zona libre de plagas</p>
       <div class="v-rank" id="v-rank">S</div>
       <h2 id="v-title">Guardián de Selene</h2>
       <div class="v-stats">
@@ -195,14 +238,14 @@
         <div><small>Flechas</small><b id="v-shots">0</b></div>
       </div>
       <div class="v-actions">
-        <button id="v-again" class="btn primary magnetic"><span>Repetir el Ritual</span></button>
-        <button id="v-exit" class="btn ghost"><span>Volver a la leyenda</span></button>
+        <button id="v-again" class="btn primary magnetic"><span>Jugar otra vez</span></button>
+        <button id="v-exit" class="btn ghost"><span>Volver a la página</span></button>
       </div>
     </div>
   </div>
   <div id="cursor" aria-hidden="true"><i></i></div>
 
-  <noscript><p class="noscript">SELENE necesita JavaScript y WebGL para despertar.</p></noscript>
+  <noscript><p class="noscript">SELENE necesita JavaScript y WebGL para mostrar esta página.</p></noscript>
   <script type="module" src="js/main.js"></script>
   <script>
     // dev.html loads ES modules, which browsers block over file://. Explain instead of hanging.

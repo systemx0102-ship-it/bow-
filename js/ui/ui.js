@@ -106,11 +106,46 @@ export function initUI({ audio, onEnter, onRitual, onRestart }) {
   });
   const railBtns = $$('button', rail);
 
+  /* ---------- inertial wheel scrolling ----------
+   * The mouse wheel no longer jumps the page: each notch moves a target and the
+   * page glides toward it, so chapter transitions feel slow and cinematic. */
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scroller = { target: scrollY, cur: scrollY, active: false };
+  const maxScroll = () => document.documentElement.scrollHeight - innerHeight;
+  addEventListener('wheel', (e) => {
+    if (reducedMotion || inRitual || e.ctrlKey || !body.classList.contains('entered')) return;
+    if (e.target.closest && e.target.closest('textarea, select')) return;
+    e.preventDefault();
+    const unit = e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? innerHeight : 1;
+    if (!scroller.active) scroller.cur = scroller.target = scrollY;
+    scroller.target = Math.max(0, Math.min(maxScroll(), scroller.target + e.deltaY * unit * 0.7));
+    scroller.active = true;
+  }, { passive: false });
+  const stopGlide = () => { scroller.active = false; scroller.target = scroller.cur = scrollY; };
+  addEventListener('keydown', stopGlide);
+  addEventListener('touchstart', stopGlide, { passive: true });
+
   /* ---------- nav anchors ---------- */
   $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
     const t = $(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    if (t) { e.preventDefault(); stopGlide(); t.scrollIntoView({ behavior: 'smooth' }); }
   }));
+
+  /* ---------- quote form -> WhatsApp or e-mail ---------- */
+  const form = $('#quote-form');
+  if (form) form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const text = `Hola, quiero cotizar un servicio.\nNombre: ${d.get('nombre')}\nTeléfono: ${d.get('telefono')}\nServicio: ${d.get('servicio')}\nLugar: ${d.get('lugar')}\nDetalles: ${d.get('mensaje') || '-'}`;
+    const wa = (form.dataset.whatsapp || '').replace(/\D/g, '');
+    const mail = form.dataset.email || '';
+    const note = $('#form-note');
+    if (wa) window.open(`https://wa.me/${wa}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+    else if (mail) location.href = `mailto:${mail}?subject=${encodeURIComponent('Cotización de servicio')}&body=${encodeURIComponent(text)}`;
+    else { note.textContent = 'Formulario de demostración: configura tu WhatsApp o correo en el atributo data-whatsapp / data-email del formulario.'; return; }
+    note.textContent = '¡Gracias! Te contactaremos muy pronto.';
+    audio.bell && audio.bell(880, 0.12, 1.8);
+  });
 
   /* ---------- ritual mode ---------- */
   const startRitual = () => {
@@ -153,6 +188,11 @@ export function initUI({ audio, onEnter, onRitual, onRestart }) {
       return tops.length - 1;
     },
     tick(dt, t, ritual) {
+      if (scroller.active) {
+        scroller.cur += (scroller.target - scroller.cur) * Math.min(1, dt * 2.6);
+        if (Math.abs(scroller.target - scroller.cur) < 0.5) { scroller.cur = scroller.target; scroller.active = false; }
+        scrollTo(0, scroller.cur);
+      }
       C.x += (P.x - C.x) * Math.min(1, dt * 18);
       C.y += (P.y - C.y) * Math.min(1, dt * 18);
       cursor.style.transform = `translate(${C.x}px, ${C.y}px)`;

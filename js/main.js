@@ -26,7 +26,7 @@ const loader = {
 };
 
 async function boot() {
-  await loader.set(0.05, 'Despertando el vacío…');
+  await loader.set(0.05, 'Preparando el equipo…');
 
   /* ---------- renderer ---------- */
   const canvas = $('#scene');
@@ -51,7 +51,7 @@ async function boot() {
   const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.1, 2000);
   camera.position.set(0, 2, 40);
 
-  await loader.set(0.15, 'Tejiendo la nebulosa…');
+  await loader.set(0.15, 'Inspeccionando la zona…');
   // The nebula is expensive (15 noise taps per pixel) and nearly static,
   // so it is baked once into a cubemap and used as the scene background.
   const nebulaMat = createNebulaMaterial();
@@ -63,14 +63,14 @@ async function boot() {
   const stars = createStars(reduced ? 3000 : 7000);
   scene.add(stars);
 
-  await loader.set(0.3, 'Alzando la luna…');
+  await loader.set(0.3, 'Calibrando la precisión…');
   const moon = createMoon();
   scene.add(moon);
   const clouds = createClouds();
   scene.add(clouds);
 
   // Environment map for reflections, rendered from a miniature copy of the sky
-  await loader.set(0.42, 'Reflejando el firmamento…');
+  await loader.set(0.42, 'Revisando cada rincón…');
   const envScene = new THREE.Scene();
   const envSkyMat = createNebulaMaterial();
   envSkyMat.uniforms.uIntensity.value = 3.2;
@@ -85,7 +85,7 @@ async function boot() {
   const envTex = pmrem.fromScene(envScene, 0.035).texture;
   pmrem.dispose();
 
-  await loader.set(0.55, 'Forjando el arco…');
+  await loader.set(0.55, 'Tensando el arco…');
   scene.add(new THREE.AmbientLight(0x243a7a, 0.7));
   const moonLight = new THREE.DirectionalLight(0xc8dcff, 2.6);
   moonLight.position.copy(MOON_POS);
@@ -109,17 +109,17 @@ async function boot() {
   const particles = new Particles(18000);
   scene.add(particles);
 
-  await loader.set(0.68, 'Encendiendo el resplandor…');
+  await loader.set(0.68, 'Preparando tratamientos…');
   const post = createPost(renderer, scene, camera);
   const audio = new Audio();
   const ritual = new Ritual({ scene, camera, bow, particles, audio, post });
 
-  await loader.set(0.8, 'Compilando runas (shaders)…');
+  await loader.set(0.8, 'Compilando efectos 3D…');
   // some drivers never resolve parallel compilation: never let it block the loader
   try { await Promise.race([renderer.compileAsync(scene, camera), new Promise((r) => setTimeout(r, 4000))]); } catch { renderer.compile(scene, camera); }
-  await loader.set(0.93, 'Afinando el hilo estelar…');
+  await loader.set(0.93, 'Últimos ajustes…');
   try { await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]); } catch {}
-  await loader.set(1, 'Selene te espera.');
+  await loader.set(1, 'Listo. Bienvenido.');
   document.body.classList.add('loaded');
 
   /* ---------- sizing ---------- */
@@ -185,7 +185,8 @@ async function boot() {
     { pos: V(1.2, 2.3, 3.9), tgt: V(-1.1, 1.8, 0), rot: -0.55 }, // forja: upper limb close-up
     { pos: V(-5.2, 0.2, 2.6), tgt: V(-0.2, 0.1, 1.8), rot: 0.35 }, // hilo: along the string
     { pos: V(0, -2.2, 12), tgt: V(0, 9, -70), rot: 0.2 }, // cielo: look at the constellations
-    { pos: V(0, 0.4, 12.5), tgt: V(0, 0.4, 0), rot: 0 }, // ritual
+    { pos: V(0, 0.4, 12.5), tgt: V(0, 0.4, 0), rot: 0 }, // desafío (mini-juego)
+    { pos: V(1.2, 0.3, 9.5), tgt: V(3.0, 0.3, 0), rot: -0.4 }, // contacto: bow left of the form
   ];
   const portraitAdjust = (k, out) => {
     const a = innerWidth / innerHeight;
@@ -281,7 +282,7 @@ async function boot() {
     const introK = 1 - Math.pow(1 - state.intro, 3);
 
     // scroll -> chapter index
-    scrollF += (ui.chapterF() - scrollF) * Math.min(1, dt * 4);
+    scrollF += (ui.chapterF() - scrollF) * Math.min(1, dt * 1.6); // slow, cinematic camera follow
     const k = sampleKey(scrollF);
     smoothMouse.lerp(state.mouse, Math.min(1, dt * 3));
 

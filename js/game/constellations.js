@@ -4,19 +4,19 @@ import { radialTexture } from '../world/sky.js';
 
 export const CONSTELLATIONS = [
   {
-    name: 'Orión', title: 'El Cazador',
+    name: 'Cucarachas', title: 'Zona cocina',
     center: [-6, 9, -70], scale: 7.5, wind: 0, motion: 0,
     stars: [[-0.9, 1.2], [0.8, 1.0], [0.28, 0.05], [0, -0.05], [-0.28, -0.15], [-0.75, -1.3], [0.9, -1.1]],
     lines: [[0, 1], [0, 4], [1, 2], [2, 3], [3, 4], [4, 5], [2, 6]],
   },
   {
-    name: 'Casiopea', title: 'La Reina',
+    name: 'Termitas', title: 'Madera y estructura · con viento',
     center: [7, 14, -80], scale: 9, wind: 4, motion: 0.6,
     stars: [[-1.2, 0.4], [-0.6, -0.35], [0, 0.2], [0.6, -0.45], [1.2, 0.5]],
     lines: [[0, 1], [1, 2], [2, 3], [3, 4]],
   },
   {
-    name: 'Lyra', title: 'La Lira de Orfeo',
+    name: 'Roedores', title: 'Bodega · tormenta y objetivos móviles',
     center: [-1, 17, -88], scale: 8, wind: 7, motion: 1.2,
     stars: [[0, 1.3], [-0.4, 0.3], [0.38, 0.42], [0.5, -0.95], [-0.3, -1.05]],
     lines: [[0, 1], [0, 2], [1, 2], [2, 3], [3, 4], [4, 1]],
