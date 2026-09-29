@@ -1,0 +1,58 @@
+# Blender 4.5.4 LTS MTL File: 'None'
+# www.blender.org
+
+newmtl Armor
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures/Armor_Color.png
+map_Ns textures/Armor_Roughness.png
+map_refl textures/Armor_Metalness.png
+map_Bump -bm 1.000000 textures/Armor_Normal.png
+
+newmtl Aura
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Body
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures/Body_Color.png
+map_Ns textures/Body_Roughness.png
+map_refl textures/Body_Metalness.png
+map_Bump -bm 1.000000 textures/Body_Normal.png
+
+newmtl Crystal
+Ns 810.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.250000 0.800000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 1.500000 4.800000 6.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl Grip
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures/Grip_Color.png
+map_Ns textures/Grip_Roughness.png
+map_refl textures/Grip_Metalness.png
+map_Bump -bm 1.000000 textures/Grip_Normal.png

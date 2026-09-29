@@ -1,0 +1,6 @@
+{
+  "name": "LunarBowFX",
+  "tree": {
+    "$path": "src/LunarBowFX.client.luau"
+  }
+}

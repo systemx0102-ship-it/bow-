@@ -1,0 +1,5 @@
+# Python 3.11
+bpy==4.5.4
+numpy
+scipy
+pillow

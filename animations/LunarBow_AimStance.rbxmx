@@ -1,0 +1,61 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+<Meta name="ExplicitAutoJoints">true</Meta>
+<External>null</External>
+<External>nil</External>
+<Item class="KeyframeSequence" referent="RBX236"><Properties><float name="AuthoredHipHeight">2</float><bool name="Loop">true</bool><string name="Name">LunarBow_AimStance</string><token name="Priority">2</token></Properties>
+	<Item class="Keyframe" referent="RBX237"><Properties><string name="Name">Keyframe</string><float name="Time">0.0000</float></Properties>
+		<Item class="Pose" referent="RBX245"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">HumanoidRootPart</string><float name="Weight">0</float></Properties>
+			<Item class="Pose" referent="RBX244"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>-0.24</Y><Z>0</Z><R00>0.978148</R00><R01>0</R01><R02>-0.207912</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.207912</R20><R21>0</R21><R22>0.978148</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LowerTorso</string><float name="Weight">1</float></Properties>
+				<Item class="Pose" referent="RBX240"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.923608</R00><R01>0.347823</R01><R02>0.161142</R02><R10>-0.254524</R10><R11>0.870765</R11><R12>-0.420697</R12><R20>-0.286645</R20><R21>0.347545</R21><R22>0.892775</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftUpperLeg</string><float name="Weight">1</float></Properties>
+					<Item class="Pose" referent="RBX239"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.993738</R11><R12>0.111732</R12><R20>0</R20><R21>-0.111732</R21><R22>0.993738</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftLowerLeg</string><float name="Weight">1</float></Properties>
+						<Item class="Pose" referent="RBX238"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.947182</R00><R01>-0.237783</R01><R02>-0.215187</R02><R10>0.288643</R10><R11>0.924513</R11><R12>0.248918</R12><R20>0.139755</R20><R21>-0.297883</R21><R22>0.944317</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftFoot</string><float name="Weight">1</float></Properties>
+						</Item>
+					</Item>
+				</Item>
+				<Item class="Pose" referent="RBX243"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.663276</R00><R01>-0.365996</R01><R02>-0.652773</R02><R10>0.439901</R10><R11>0.896325</R11><R12>-0.0555711</R12><R20>0.605435</R20><R21>-0.250297</R21><R22>0.755513</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightUpperLeg</string><float name="Weight">1</float></Properties>
+					<Item class="Pose" referent="RBX242"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.99615</R11><R12>0.0876688</R12><R20>0</R20><R21>-0.0876688</R21><R22>0.99615</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightLowerLeg</string><float name="Weight">1</float></Properties>
+						<Item class="Pose" referent="RBX241"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.903731</R00><R01>0.411193</R01><R02>-0.119126</R02><R10>-0.410644</R10><R11>0.911293</R11><R12>0.0302682</R12><R20>0.121005</R20><R21>0.0215641</R21><R22>0.992418</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightFoot</string><float name="Weight">1</float></Properties>
+						</Item>
+					</Item>
+				</Item>
+			</Item>
+		</Item>
+	</Item>
+	<Item class="Keyframe" referent="RBX246"><Properties><string name="Name">Keyframe</string><float name="Time">1.0000</float></Properties>
+		<Item class="Pose" referent="RBX254"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">HumanoidRootPart</string><float name="Weight">0</float></Properties>
+			<Item class="Pose" referent="RBX253"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>-0.27</Y><Z>0</Z><R00>0.978148</R00><R01>0</R01><R02>-0.207912</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.207912</R20><R21>0</R21><R22>0.978148</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LowerTorso</string><float name="Weight">1</float></Properties>
+				<Item class="Pose" referent="RBX249"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.915373</R00><R01>0.358556</R01><R02>0.183111</R02><R10>-0.245616</R10><R11>0.857709</R11><R12>-0.451672</R12><R20>-0.319005</R20><R21>0.368474</R21><R22>0.873191</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftUpperLeg</string><float name="Weight">1</float></Properties>
+					<Item class="Pose" referent="RBX248"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.988674</R11><R12>0.150079</R12><R20>0</R20><R21>-0.150079</R21><R22>0.988674</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftLowerLeg</string><float name="Weight">1</float></Properties>
+						<Item class="Pose" referent="RBX247"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.939927</R00><R01>-0.233276</R01><R02>-0.249238</R02><R10>0.293581</R10><R11>0.92494</R11><R12>0.241448</R12><R20>0.174206</R20><R21>-0.300115</R21><R22>0.937861</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftFoot</string><float name="Weight">1</float></Properties>
+						</Item>
+					</Item>
+				</Item>
+				<Item class="Pose" referent="RBX252"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.668206</R00><R01>-0.382602</R01><R02>-0.638056</R02><R10>0.447426</R10><R11>0.891866</R11><R12>-0.066228</R12><R20>0.594399</R20><R21>-0.241229</R21><R22>0.767136</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightUpperLeg</string><float name="Weight">1</float></Properties>
+					<Item class="Pose" referent="RBX251"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.992386</R11><R12>0.123165</R12><R20>0</R20><R21>-0.123165</R21><R22>0.992386</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightLowerLeg</string><float name="Weight">1</float></Properties>
+						<Item class="Pose" referent="RBX250"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.895595</R00><R01>0.425655</R01><R02>-0.129337</R02><R10>-0.427441</R10><R11>0.903918</R11><R12>0.0150291</R12><R20>0.123307</R20><R21>0.0418238</R21><R22>0.991487</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightFoot</string><float name="Weight">1</float></Properties>
+						</Item>
+					</Item>
+				</Item>
+			</Item>
+		</Item>
+	</Item>
+	<Item class="Keyframe" referent="RBX255"><Properties><string name="Name">Keyframe</string><float name="Time">2.0000</float></Properties>
+		<Item class="Pose" referent="RBX263"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">HumanoidRootPart</string><float name="Weight">0</float></Properties>
+			<Item class="Pose" referent="RBX262"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>-0.24</Y><Z>0</Z><R00>0.978148</R00><R01>0</R01><R02>-0.207912</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.207912</R20><R21>0</R21><R22>0.978148</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LowerTorso</string><float name="Weight">1</float></Properties>
+				<Item class="Pose" referent="RBX258"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.923608</R00><R01>0.347823</R01><R02>0.161142</R02><R10>-0.254524</R10><R11>0.870765</R11><R12>-0.420697</R12><R20>-0.286645</R20><R21>0.347545</R21><R22>0.892775</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftUpperLeg</string><float name="Weight">1</float></Properties>
+					<Item class="Pose" referent="RBX257"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.993738</R11><R12>0.111732</R12><R20>0</R20><R21>-0.111732</R21><R22>0.993738</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftLowerLeg</string><float name="Weight">1</float></Properties>
+						<Item class="Pose" referent="RBX256"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.947182</R00><R01>-0.237783</R01><R02>-0.215187</R02><R10>0.288643</R10><R11>0.924513</R11><R12>0.248918</R12><R20>0.139755</R20><R21>-0.297883</R21><R22>0.944317</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">LeftFoot</string><float name="Weight">1</float></Properties>
+						</Item>
+					</Item>
+				</Item>
+				<Item class="Pose" referent="RBX261"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.663276</R00><R01>-0.365996</R01><R02>-0.652773</R02><R10>0.439901</R10><R11>0.896325</R11><R12>-0.0555711</R12><R20>0.605435</R20><R21>-0.250297</R21><R22>0.755513</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightUpperLeg</string><float name="Weight">1</float></Properties>
+					<Item class="Pose" referent="RBX260"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.99615</R11><R12>0.0876688</R12><R20>0</R20><R21>-0.0876688</R21><R22>0.99615</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightLowerLeg</string><float name="Weight">1</float></Properties>
+						<Item class="Pose" referent="RBX259"><Properties><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>0</Z><R00>0.903731</R00><R01>0.411193</R01><R02>-0.119126</R02><R10>-0.410644</R10><R11>0.911293</R11><R12>0.0302682</R12><R20>0.121005</R20><R21>0.0215641</R21><R22>0.992418</R22></CoordinateFrame><token name="EasingDirection">2</token><token name="EasingStyle">5</token><string name="Name">RightFoot</string><float name="Weight">1</float></Properties>
+						</Item>
+					</Item>
+				</Item>
+			</Item>
+		</Item>
+	</Item>
+</Item>
+</roblox>

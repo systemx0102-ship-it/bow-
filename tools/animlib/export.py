@@ -1,0 +1,210 @@
+"""Export solved animations to Roblox KeyframeSequence (.rbxmx) and a Luau data module."""
+from __future__ import annotations
+
+import itertools
+from xml.sax.saxutils import escape
+
+import numpy as np
+from scipy.spatial.transform import Rotation, Slerp
+
+from . import r15
+
+PRIORITY = {"Idle": 0, "Movement": 1, "Action": 2, "Action2": 3, "Action3": 4, "Action4": 5, "Core": 1000}
+EASING_STYLE = {"Linear": 0, "Constant": 1, "Elastic": 2, "Cubic": 3, "Bounce": 4, "CubicV2": 5}
+EASING_DIR = {"In": 0, "Out": 1, "InOut": 2}
+
+# pose tree used by KeyframeSequences (parent pose -> children)
+TREE = {
+    "HumanoidRootPart": ["LowerTorso"],
+    "LowerTorso": ["UpperTorso", "LeftUpperLeg", "RightUpperLeg"],
+    "UpperTorso": ["Head", "LeftUpperArm", "RightUpperArm"],
+    "LeftUpperArm": ["LeftLowerArm"], "LeftLowerArm": ["LeftHand"], "LeftHand": ["BowHandle"],
+    "RightUpperArm": ["RightLowerArm"], "RightLowerArm": ["RightHand"],
+    "LeftUpperLeg": ["LeftLowerLeg"], "LeftLowerLeg": ["LeftFoot"],
+    "RightUpperLeg": ["RightLowerLeg"], "RightLowerLeg": ["RightFoot"],
+}
+
+
+def _clean(m):
+    """Orthonormalise and round a 4x4 transform."""
+    rot = Rotation.from_matrix(m[:3, :3]).as_matrix()
+    out = np.eye(4)
+    out[:3, :3] = rot
+    out[:3, 3] = m[:3, 3]
+    out[np.abs(out) < 1e-7] = 0.0
+    return out
+
+
+# ---------------------------------------------------------------------------
+# rbxmx
+# ---------------------------------------------------------------------------
+_ref = itertools.count()
+
+
+def _cframe_xml(m, name="CFrame"):
+    r = m[:3, :3]
+    p = m[:3, 3]
+    vals = dict(X=p[0], Y=p[1], Z=p[2])
+    for i in range(3):
+        for j in range(3):
+            vals[f"R{i}{j}"] = r[i, j]
+    inner = "".join(f"<{k}>{v:.6g}</{k}>" for k, v in vals.items())
+    return f'<CoordinateFrame name="{name}">{inner}</CoordinateFrame>'
+
+
+def _pose_xml(name, poses, joints, style, direction, depth):
+    """Recursively emit a Pose; returns '' if no descendant is animated."""
+    children = "".join(_pose_xml(c, poses, joints, style, direction, depth + 1) for c in TREE.get(name, []))
+    animated = name in joints
+    if not animated and not children:
+        return ""
+    m = _clean(poses[name]) if animated else np.eye(4)
+    ind = "\t" * depth
+    return (
+        f'{ind}<Item class="Pose" referent="RBX{next(_ref)}"><Properties>'
+        f"{_cframe_xml(m)}"
+        f'<token name="EasingDirection">{EASING_DIR[direction]}</token>'
+        f'<token name="EasingStyle">{EASING_STYLE[style]}</token>'
+        f'<string name="Name">{name}</string>'
+        f'<float name="Weight">{1 if animated else 0}</float>'
+        f"</Properties>\n{children}{ind}</Item>\n"
+    )
+
+
+def to_rbxmx(anim, solved):
+    """solved: list of (Key, transforms) pairs."""
+    out = [
+        '<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" '
+        'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+        'xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">\n',
+        '<Meta name="ExplicitAutoJoints">true</Meta>\n<External>null</External>\n<External>nil</External>\n',
+        f'<Item class="KeyframeSequence" referent="RBX{next(_ref)}"><Properties>'
+        f'<float name="AuthoredHipHeight">2</float>'
+        f'<bool name="Loop">{"true" if anim.loop else "false"}</bool>'
+        f'<string name="Name">LunarBow_{anim.name}</string>'
+        f'<token name="Priority">{PRIORITY[anim.priority]}</token>'
+        "</Properties>\n",
+    ]
+    for key, tr in solved:
+        out.append(
+            f'\t<Item class="Keyframe" referent="RBX{next(_ref)}"><Properties>'
+            f'<string name="Name">Keyframe</string><float name="Time">{key.time:.4f}</float></Properties>\n'
+        )
+        out.append(_pose_xml("HumanoidRootPart", tr, set(anim.joints), key.style, key.direction, 2))
+        for mname, mval in key.markers:
+            out.append(
+                f'\t\t<Item class="KeyframeMarker" referent="RBX{next(_ref)}"><Properties>'
+                f'<string name="Name">{escape(mname)}</string><string name="Value">{escape(mval)}</string>'
+                "</Properties></Item>\n"
+            )
+        out.append("\t</Item>\n")
+    out.append("</Item>\n</roblox>\n")
+    return "".join(out)
+
+
+# ---------------------------------------------------------------------------
+# Luau data module (used by the built-in keyframe player)
+# ---------------------------------------------------------------------------
+def _cf_luau(m):
+    m = _clean(m)
+    q = Rotation.from_matrix(m[:3, :3]).as_quat()  # x, y, z, w
+    if q[3] < 0:
+        q = -q
+    p = m[:3, 3]
+    vals = [*p, *q]
+    s = ", ".join(("%.5f" % v).rstrip("0").rstrip(".") if abs(v) > 5e-6 else "0" for v in vals)
+    return f"CFrame.new({s})"
+
+
+def to_luau(entries):
+    """entries: list of (anim, solved)."""
+    lines = [
+        "--!strict",
+        "-- AUTO-GENERATED by tools/build_animations.py. Do not edit by hand:",
+        "-- change tools/animlib/anims.py and rebuild instead.",
+        "-- Same data as the KeyframeSequences in /animations (Pose.CFrame = Motor6D.Transform).",
+        "",
+        "export type Keyframe = {",
+        "\tTime: number,",
+        "\tStyle: string,",
+        "\tDirection: string,",
+        "\tMarkers: { { string } },",
+        "\tPoses: { [string]: CFrame },",
+        "}",
+        "export type AnimationData = {",
+        "\tName: string,",
+        "\tLength: number,",
+        "\tLoop: boolean,",
+        "\tPriority: string,",
+        "\tAuthoredHipHeight: number,",
+        "\tJoints: { string },",
+        "\tKeyframes: { Keyframe },",
+        "}",
+        "",
+        "local Data: { [string]: AnimationData } = {}",
+        "",
+    ]
+    for anim, solved in entries:
+        joints = [j for j in r15.ORDER if j in anim.joints]
+        lines.append(f"-- {anim.description}")
+        lines.append(f"Data.{anim.name} = {{")
+        lines.append(f'\tName = "{anim.name}",')
+        lines.append(f"\tLength = {solved[-1][0].time:.4f},")
+        lines.append(f"\tLoop = {'true' if anim.loop else 'false'},")
+        lines.append(f'\tPriority = "{anim.priority}",')
+        lines.append("\tAuthoredHipHeight = 2,")
+        lines.append("\tJoints = { " + ", ".join(f'"{j}"' for j in joints) + " },")
+        lines.append("\tKeyframes = {")
+        for key, tr in solved:
+            markers = ", ".join(f'{{ "{n}", "{v}" }}' for n, v in key.markers)
+            lines.append(
+                f'\t\t{{ Time = {key.time:.4f}, Style = "{key.style}", Direction = "{key.direction}", '
+                f"Markers = {{ {markers} }}, Poses = {{"
+            )
+            for j in joints:
+                lines.append(f"\t\t\t{j} = {_cf_luau(tr[j])},")
+            lines.append("\t\t} },")
+        lines.append("\t},")
+        lines.append("}")
+        lines.append("")
+    lines.append("return Data")
+    lines.append("")
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# sampling (mirrors Roblox interpolation) for previews
+# ---------------------------------------------------------------------------
+def ease(alpha, style, direction):
+    a = float(np.clip(alpha, 0, 1))
+    if style == "Linear":
+        return a
+    if style == "Constant":
+        return 0.0
+    if direction == "In":
+        return a ** 3
+    if direction == "Out":
+        return 1 - (1 - a) ** 3
+    return 4 * a ** 3 if a < 0.5 else 1 - (-2 * a + 2) ** 3 / 2
+
+
+def sample(solved, joints, t):
+    keys = [k for k, _ in solved]
+    if t <= keys[0].time:
+        return {j: solved[0][1][j] for j in joints}
+    if t >= keys[-1].time:
+        return {j: solved[-1][1][j] for j in joints}
+    i = max(i for i, k in enumerate(keys) if k.time <= t)
+    ka, ta = solved[i]
+    kb, tb = solved[i + 1]
+    a = ease((t - ka.time) / (kb.time - ka.time), ka.style, ka.direction)
+    out = {}
+    for j in joints:
+        ma, mb = _clean(ta[j]), _clean(tb[j])
+        rots = Rotation.from_matrix(np.stack([ma[:3, :3], mb[:3, :3]]))
+        r = Slerp([0, 1], rots)(a).as_matrix()
+        m = np.eye(4)
+        m[:3, :3] = r
+        m[:3, 3] = ma[:3, 3] * (1 - a) + mb[:3, 3] * a
+        out[j] = m
+    return out

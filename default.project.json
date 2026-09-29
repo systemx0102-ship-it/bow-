@@ -1,0 +1,81 @@
+{
+  "name": "LunarBow",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "LunarBowShared": {
+        "$path": "roblox/src/LunarBowShared"
+      }
+    },
+    "StarterPack": {
+      "LunarBow": {
+        "$path": "roblox/src/LunarBow"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "LunarBowFX": {
+          "$path": "roblox/src/LunarBowFX.client.luau"
+        }
+      }
+    },
+    "ServerScriptService": {
+      "DemoTargets": {
+        "$path": "roblox/demo/DemoTargets.server.luau"
+      }
+    },
+    "Workspace": {
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Locked": true,
+          "Size": [512, 16, 512],
+          "Position": [0, -8, 0],
+          "Material": "Slate",
+          "Color": [0.11, 0.13, 0.19]
+        }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "Size": [8, 1, 8],
+          "Position": [0, 0.5, 20],
+          "Material": "Neon",
+          "Color": [0.2, 0.55, 0.9],
+          "Transparency": 0.4,
+          "Neutral": true
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "ClockTime": 0.5,
+        "Brightness": 2,
+        "Ambient": [0.16, 0.2, 0.32],
+        "OutdoorAmbient": [0.25, 0.3, 0.48],
+        "EnvironmentDiffuseScale": 1,
+        "EnvironmentSpecularScale": 1
+      },
+      "Bloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Intensity": 0.9,
+          "Size": 28,
+          "Threshold": 1.4
+        }
+      },
+      "Atmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.3,
+          "Color": [0.45, 0.55, 0.8],
+          "Decay": [0.2, 0.25, 0.45],
+          "Glare": 0.4,
+          "Haze": 1.2
+        }
+      }
+    }
+  }
+}
