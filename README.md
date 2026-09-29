@@ -5,14 +5,22 @@ Todo se genera en el navegador: **sin modelos importados, sin texturas, sin audi
 
 ## Cómo verla
 
-Sirve la carpeta con cualquier servidor estático (los módulos ES no funcionan con `file://`):
+**Abre `index.html` con doble clic.** Es una versión autónoma (≈700 KB) con el CSS, el JavaScript y Three.js incluidos: funciona sin servidor, en cualquier hosting estático y en GitHub Pages.
+
+### Desarrollo
+
+`dev.html` carga el código fuente modular (`css/`, `js/`, `vendor/`). Los módulos ES no funcionan con `file://`, así que necesita un servidor:
 
 ```bash
-python3 -m http.server 8000
-# abre http://localhost:8000
+npm run dev          # python3 -m http.server 8000 → http://localhost:8000/dev.html
 ```
 
-También funciona directamente en GitHub Pages (Three.js va incluido en `vendor/`, sin CDN).
+Después de editar el código, regenera `index.html`:
+
+```bash
+npm install          # solo la primera vez (esbuild)
+npm run build
+```
 
 ## Qué hay dentro
 
@@ -36,7 +44,9 @@ También funciona directamente en GitHub Pages (Three.js va incluido en `vendor/
 ## Estructura
 
 ```
-index.html          — contenido y HUD
+index.html          — versión autónoma generada (no editar)
+dev.html            — contenido y HUD (fuente)
+tools/              — script de build autónomo
 css/style.css       — diseño
 js/main.js          — escena, cámara por capítulos, bucle
 js/world/*          — cielo, arco, cuerda, partículas, líneas

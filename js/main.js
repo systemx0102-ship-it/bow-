@@ -115,7 +115,8 @@ async function boot() {
   const ritual = new Ritual({ scene, camera, bow, particles, audio, post });
 
   await loader.set(0.8, 'Compilando runas (shaders)…');
-  try { await renderer.compileAsync(scene, camera); } catch { renderer.compile(scene, camera); }
+  // some drivers never resolve parallel compilation: never let it block the loader
+  try { await Promise.race([renderer.compileAsync(scene, camera), new Promise((r) => setTimeout(r, 4000))]); } catch { renderer.compile(scene, camera); }
   await loader.set(0.93, 'Afinando el hilo estelar…');
   try { await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]); } catch {}
   await loader.set(1, 'Selene te espera.');
@@ -348,4 +349,10 @@ async function boot() {
     snap() { state.intro = 1; scrollF = ui.chapterF(); state.gameBlend = state.gameTarget; } };
 }
 
-boot();
+window.__seleneBooted = true;
+boot().catch((err) => {
+  console.error(err);
+  document.body.classList.add('boot-error');
+  const m = document.getElementById('loader-msg');
+  if (m) m.textContent = 'Error al iniciar: ' + (err && err.message ? err.message : err);
+});

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SELENE · El Arco de la Luna Eterna</title>
+  <meta name="description" content="Una reliquia celeste en WebGL: un arco forjado con luz lunar, un hilo que canta y un ritual para volver a encender las constelaciones." />
+  <meta name="theme-color" content="#02040d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='40' cy='22' r='14' fill='%239cc8ff'/%3E%3Cpath d='M20 4 Q44 32 20 60' stroke='%237fe0ff' stroke-width='5' fill='none'/%3E%3Cpath d='M20 4 L20 60' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three/three.module.js",
+        "three/addons/": "./vendor/three/addons/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ LOADER ============ -->
+  <div id="loader" role="dialog" aria-label="Cargando">
+    <div class="loader-sigil" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#bff0ff"/><stop offset="1" stop-color="#3a7bff"/></linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="92" class="ring r1"/>
+        <circle cx="100" cy="100" r="78" class="ring r2"/>
+        <circle cx="122" cy="72" r="26" class="moon"/>
+        <path d="M78 18 Q138 100 78 182" class="bowline"/>
+        <path d="M78 18 L78 182" class="stringline"/>
+        <path d="M40 100 L160 100" class="arrowline"/>
+        <path d="M160 100 l-12 -6 v12 z" fill="url(#lg)"/>
+      </svg>
+    </div>
+    <p class="loader-eyebrow">Reliquia Celeste · Nº 0001</p>
+    <h2 class="loader-title">SELENE</h2>
+    <div class="loader-track"><div id="loader-bar"></div></div>
+    <div class="loader-meta"><span id="loader-msg">Invocando…</span><span id="loader-pct">000</span></div>
+    <div class="loader-actions">
+      <button id="enter-sound" class="btn primary magnetic"><span>Entrar con sonido</span></button>
+      <button id="enter-silent" class="btn ghost"><span>Entrar en silencio</span></button>
+    </div>
+    <p class="loader-note">Recomendado: auriculares · pantalla completa</p>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a href="#hero" class="brand" aria-label="Selene, inicio">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="25" cy="14" r="8" /><path d="M13 3 Q30 20 13 37" /><path d="M13 3 L13 37" class="s" /></svg>
+      <span>SELENE</span>
+    </a>
+    <nav aria-label="Capítulos">
+      <a href="#origen" data-scramble>Origen</a>
+      <a href="#forja" data-scramble>La Forja</a>
+      <a href="#hilo" data-scramble>El Hilo</a>
+      <a href="#cielo" data-scramble>El Cielo</a>
+      <a href="#ritual" data-scramble>El Ritual</a>
+    </nav>
+    <button id="sound-toggle" class="sound" aria-pressed="false" aria-label="Activar o silenciar sonido">
+      <i></i><i></i><i></i><i></i><span>Silencio</span>
+    </button>
+  </header>
+
+  <aside id="rail" aria-label="Progreso"></aside>
+
+  <!-- ============ CONTENT ============ -->
+  <main id="content">
+    <section id="hero" class="chapter hero" data-num="0" data-title="Selene">
+      <div class="hero-inner">
+        <p class="eyebrow" data-reveal><span class="dot"></span> Reliquia Celeste · Era Lunar · Nº 0001</p>
+        <h1 class="hero-title split">SELENE</h1>
+        <p class="hero-sub" data-reveal>El arco forjado con la última luz de una luna que ya no existe.</p>
+        <div class="hero-cta" data-reveal>
+          <button class="btn primary magnetic" data-ritual><span>Iniciar el Ritual</span><svg viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></svg></button>
+          <a class="btn ghost" href="#origen"><span>Descubrir la leyenda</span></a>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span>Desliza</span><i></i></div>
+      <div class="hero-coords" aria-hidden="true">
+        <span>RA 05h 35m 17s</span><span>DEC −05° 23′ 28″</span><span>MAG −12.7</span>
+      </div>
+    </section>
+
+    <section id="origen" class="chapter right" data-num="I" data-title="Origen">
+      <div class="panel" data-reveal>
+        <p class="num">I</p>
+        <h2>Cuando la primera luna murió, <em>su luz no se apagó.</em><br/>Se endureció.</h2>
+        <p>Durante mil doscientos años los últimos astrónomos de Selenia recogieron los fragmentos que caían del cielo. Eran fríos, azules y cantaban cuando el viento los rozaba. Con ellos no construyeron un templo, ni una corona, ni una espada.</p>
+        <p>Construyeron un arco. Porque solo un arco puede devolver algo al cielo.</p>
+        <blockquote>«Quien tense a Selene no dispara flechas: dispara estrellas de regreso a casa.»<cite>— Inscripción del empuñe</cite></blockquote>
+      </div>
+    </section>
+
+    <section id="forja" class="chapter left" data-num="II" data-title="La Forja">
+      <div class="panel" data-reveal>
+        <p class="num">II</p>
+        <h2>Acero de meteorito, <em>venas de marea.</em></h2>
+        <p>Las palas están templadas en el frío absoluto del vacío. Bajo su superficie corren venas de cristal que laten con el pulso de la marea: cuanto más se tensa el arco, más brillan.</p>
+        <div class="stats">
+          <div class="stat tilt"><b data-count="7">0</b><span>Cristales de marea</span></div>
+          <div class="stat tilt"><b data-count="1200">0</b><span>Años de forja</span></div>
+          <div class="stat tilt"><b data-count="88">0</b><span>Kg de tensión</span></div>
+          <div class="stat tilt"><b>∞</b><span>Estrellas atadas</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hilo" class="chapter right" data-num="III" data-title="El Hilo">
+      <div class="panel" data-reveal>
+        <p class="num">III</p>
+        <h2>Un único filamento <em>de luz lunar.</em></h2>
+        <p>La cuerda no es de tripa ni de seda: es un rayo de luna trenzado sobre sí mismo treinta y tres veces. Está viva, se simula en tiempo real y todavía recuerda cómo sonar.</p>
+        <p class="hint"><span class="pulse"></span><span>Cruza la cuerda con el cursor o el dedo: <strong>tócala como un arpa.</strong></span></p>
+      </div>
+    </section>
+
+    <section id="cielo" class="chapter center" data-num="IV" data-title="El Cielo">
+      <div class="panel wide" data-reveal>
+        <p class="num">IV</p>
+        <h2>Tres constelaciones <em>se apagaron.</em></h2>
+        <p>La noche en que murió la luna, el cielo perdió a su Cazador, a su Reina y a su Lira. Solo Selene puede volver a encenderlas, estrella a estrella.</p>
+        <div class="cards">
+          <article class="card tilt">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><g class="lines"><path d="M22 18 L78 22 M22 18 L40 55 M78 22 L60 50 L50 52 L40 55 M40 55 L27 90 M60 50 L82 86"/></g><g class="st"><circle cx="22" cy="18" r="3"/><circle cx="78" cy="22" r="3"/><circle cx="60" cy="50" r="2.4"/><circle cx="50" cy="52" r="2.4"/><circle cx="40" cy="55" r="2.4"/><circle cx="27" cy="90" r="3"/><circle cx="82" cy="86" r="3"/></g></svg>
+            <h3>Orión</h3><p>El Cazador · 7 estrellas</p><span class="tag">Sin viento</span>
+          </article>
+          <article class="card tilt">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><g class="lines"><path d="M10 38 L30 68 L50 45 L70 72 L90 36"/></g><g class="st"><circle cx="10" cy="38" r="3"/><circle cx="30" cy="68" r="3"/><circle cx="50" cy="45" r="3"/><circle cx="70" cy="72" r="3"/><circle cx="90" cy="36" r="3"/></g></svg>
+            <h3>Casiopea</h3><p>La Reina · 5 estrellas</p><span class="tag">Viento solar · estrellas errantes</span>
+          </article>
+          <article class="card tilt">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><g class="lines"><path d="M50 10 L36 45 L64 40 Z M64 40 L70 88 L40 90 L36 45"/></g><g class="st"><circle cx="50" cy="10" r="4"/><circle cx="36" cy="45" r="2.6"/><circle cx="64" cy="40" r="2.6"/><circle cx="70" cy="88" r="2.6"/><circle cx="40" cy="90" r="2.6"/></g></svg>
+            <h3>Lyra</h3><p>La Lira de Orfeo · 5 estrellas</p><span class="tag">Tormenta · cometas</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ritual" class="chapter center ritual" data-num="V" data-title="El Ritual">
+      <div class="panel wide" data-reveal>
+        <p class="num">V</p>
+        <h2 class="big">Tensa el arco.<br/><em>Devuelve las estrellas.</em></h2>
+        <ol class="rules">
+          <li><b>Mantén pulsado</b> para tensar. Cuanto más tensas, más lejos y más recto vuela.</li>
+          <li><b>Suelta</b> para disparar. Soltar justo al llegar al máximo es un tiro <em>Perfecto</em> (×2).</li>
+          <li>La gravedad curva la flecha y el <b>viento solar</b> la desvía. La guía de trayectoria se acorta en cada constelación.</li>
+          <li>Cada impacto carga la <b>energía lunar</b>. Llena y mantén la tensión: dispararás una <em>Nova</em> que arrasa todo a su paso (×3).</li>
+          <li>No aguantes demasiado: el brazo se cansa y la puntería tiembla.</li>
+        </ol>
+        <button class="btn primary xl magnetic" data-ritual><span>Comenzar el Ritual</span><svg viewBox="0 0 24 24"><path d="M3 12h16m-6-6 6 6-6 6"/></svg></button>
+        <p class="small">Ratón, táctil o <kbd>Espacio</kbd> para tensar · <kbd>Esc</kbd> para salir</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="sig">SELENE</p>
+      <p>Forjado en código: Three.js · WebGL · GLSL · Web Audio. Sin imágenes, sin modelos importados, sin audio pregrabado — todo se genera en tu navegador.</p>
+      <p class="small">Geometría procedural · Cuerda con física Verlet · Partículas GPU analíticas · Karplus-Strong · Síntesis FM</p>
+    </footer>
+  </main>
+
+  <!-- ============ GAME ============ -->
+  <div id="game-layer" aria-hidden="true"></div>
+  <div id="hud" aria-live="polite">
+    <div class="hud-top">
+      <div class="hud-box score"><small>Puntuación</small><b id="hud-score">0</b></div>
+      <div class="hud-box combo"><small>Combo</small><b id="hud-combo">×1</b></div>
+      <div class="hud-center"><small id="hud-level">Orión</small><div id="hud-dots"></div></div>
+      <div class="hud-box wind"><small>Viento solar</small><b><span id="hud-wind-arrow">➔</span> <span id="hud-wind">0.0</span></b></div>
+      <button id="hud-exit" class="hud-exit" aria-label="Salir del ritual">Salir <kbd>Esc</kbd></button>
+    </div>
+    <div id="hud-energy" class="energy"><div class="fill"></div><small id="hud-energy-label">Energía lunar</small></div>
+    <div id="hud-banner" class="banner"></div>
+    <p class="hud-hint">Mantén para tensar · Suelta para disparar</p>
+    <div id="reticle"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" class="base"/><circle cx="50" cy="50" r="30" class="draw"/><circle cx="50" cy="50" r="40" class="charge"/><path d="M50 8v12M50 80v12M8 50h12M80 50h12"/><circle cx="50" cy="50" r="1.8" class="dot"/></svg></div>
+  </div>
+  <div id="popups" aria-hidden="true"></div>
+  <div id="victory" role="dialog" aria-label="Resultado">
+    <div class="v-card">
+      <p class="eyebrow">El cielo ha sido restaurado</p>
+      <div class="v-rank" id="v-rank">S</div>
+      <h2 id="v-title">Guardián de Selene</h2>
+      <div class="v-stats">
+        <div><small>Puntuación</small><b id="v-score">0</b></div>
+        <div><small>Precisión</small><b id="v-acc">0%</b></div>
+        <div><small>Mejor combo</small><b id="v-combo">×0</b></div>
+        <div><small>Flechas</small><b id="v-shots">0</b></div>
+      </div>
+      <div class="v-actions">
+        <button id="v-again" class="btn primary magnetic"><span>Repetir el Ritual</span></button>
+        <button id="v-exit" class="btn ghost"><span>Volver a la leyenda</span></button>
+      </div>
+    </div>
+  </div>
+  <div id="cursor" aria-hidden="true"><i></i></div>
+
+  <noscript><p class="noscript">SELENE necesita JavaScript y WebGL para despertar.</p></noscript>
+  <script type="module" src="js/main.js"></script>
+  <script>
+    // dev.html loads ES modules, which browsers block over file://. Explain instead of hanging.
+    setTimeout(function () {
+      if (window.__seleneBooted) return;
+      var m = document.getElementById('loader-msg');
+      if (m) m.textContent = location.protocol === 'file:'
+        ? 'dev.html necesita un servidor local. Abre index.html (versión autónoma) o ejecuta: python3 -m http.server'
+        : 'No se pudieron cargar los scripts.';
+    }, 3000);
+  </script>
+</body>
+</html>
